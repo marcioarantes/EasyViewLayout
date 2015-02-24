@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
                        * Don't worry about the indent, we strip it!
                        DESC
   s.homepage         = "https://github.com/marcioarantes/EasyViewLayout"
-  # s.screenshots     = "Example", "http://cl.ly/image/1g1n0N3h3s2o"
+  s.screenshots     = "Example", "http://cl.ly/image/1g1n0N3h3s2o"
   s.license          = 'MIT'
   s.author           = { "Marcio Arantes" => "marcioarantes220@gmail.com" }
   s.source           = { :git => "https://github.com/marcioarantes/EasyViewLayout.git", :tag => s.version.to_s }
@@ -29,10 +29,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.1'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'EasyViewLayout' => ['Pod/Assets/*.png']
-  }
+  s.source_files = 'Pod/Classes'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
