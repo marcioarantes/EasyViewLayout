@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "EasyViewLayout"
-  s.version          = "0.1.0"
+  s.version          = "1.0.0"
   s.summary          = "EasyViewLayout is an easy to use Auto Layout tool designed to help you setup your constraints with easy."
   s.description      = <<-DESC
                        This is a small project I wanted to start with friends. For those who choose not to use IB and would rather
