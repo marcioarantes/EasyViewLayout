@@ -27,7 +27,7 @@ func +(tuple:(UIView, NSLayoutAttribute), c:CGFloat) -> (UIView, NSLayoutAttribu
 }
 
 func |==|(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
-    if applyToSuperView(firstView: lhs.0, rhs.0){
+    if applyToSuperView(lhs.0, rhs.0){
         if let superView = rhs.0.superview{
             superView.addConstraint(NSLayoutConstraint(
                 item:lhs.0,
@@ -52,7 +52,7 @@ func |==|(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFlo
 }
 
 func |>=|(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
-    if applyToSuperView(firstView: lhs.0, rhs.0){
+    if applyToSuperView(lhs.0, rhs.0){
         if let superView = rhs.0.superview{
             superView.addConstraint(NSLayoutConstraint(
                 item:lhs.0,
@@ -77,7 +77,7 @@ func |>=|(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFlo
 }
 
 func |<=|(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
-    if applyToSuperView(firstView: lhs.0, rhs.0){
+    if applyToSuperView(lhs.0, rhs.0){
         if let superView = rhs.0.superview{
             superView.addConstraint(NSLayoutConstraint(
                 item:lhs.0,
@@ -113,7 +113,7 @@ func |=|(lhs:(UIView, NSLayoutAttribute), rhs:(CGFloat)) {
         constant:rhs.0 ))
 }
 
-private func applyToSuperView(#firstView: UIView, secondView: UIView) -> Bool{
+private func applyToSuperView(firstView: UIView, secondView: UIView) -> Bool{
     return firstView.superview == secondView.superview
 }
 
