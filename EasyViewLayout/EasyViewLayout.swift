@@ -8,65 +8,39 @@
 
 //Operators
 /*
-! Related to View.Superview
-| Related to View
 >= GreaterThanOrEqual relation
 <= LessThanOrEqual relation
 == Equal relation
+= Used to assign width or height
 */
 
 import UIKit
 
-infix operator + {precedence 150}
-infix operator |>= {}
-infix operator |<= {}
-infix operator |== {}
-infix operator !>= {}
-infix operator !<= {}
-infix operator !== {}
-infix operator === {}
-
+infix operator + {}
+infix operator |>=| {}
+infix operator |<=| {}
+infix operator |==| {}
+infix operator |=| {}
 
 func +(tuple:(UIView, NSLayoutAttribute), c:CGFloat) -> (UIView, NSLayoutAttribute, CGFloat) {
-        return (tuple.0, tuple.1, c)
+    return (tuple.0, tuple.1, c)
 }
 
-func |==(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
-    rhs.0.addConstraint(NSLayoutConstraint(
-        item:lhs.0,
-        attribute:lhs.1,
-        relatedBy:.Equal,
-        toItem:rhs.0,
-        attribute:rhs.1,
-        multiplier:1,
-        constant:rhs.2 ))
-}
-
-func |>=(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
-    rhs.0.addConstraint(NSLayoutConstraint(
-        item:lhs.0,
-        attribute:lhs.1,
-        relatedBy:.GreaterThanOrEqual,
-        toItem:rhs.0,
-        attribute:rhs.1,
-        multiplier:1,
-        constant:rhs.2 ))
-}
-
-func |<=(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
-    rhs.0.addConstraint(NSLayoutConstraint(
-        item:lhs.0,
-        attribute:lhs.1,
-        relatedBy:.LessThanOrEqual,
-        toItem:rhs.0,
-        attribute:rhs.1,
-        multiplier:1,
-        constant:rhs.2 ))
-}
-
-func !==(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
-    if let superView = rhs.0.superview{
-        superView.addConstraint(NSLayoutConstraint(
+func |==|(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
+    if applyToSuperView(firstView: lhs.0, rhs.0){
+        if let superView = rhs.0.superview{
+            superView.addConstraint(NSLayoutConstraint(
+                item:lhs.0,
+                attribute:lhs.1,
+                relatedBy:.Equal,
+                toItem:rhs.0,
+                attribute:rhs.1,
+                multiplier:1,
+                constant:rhs.2 ))
+        }
+    }
+    else {
+        rhs.0.addConstraint(NSLayoutConstraint(
             item:lhs.0,
             attribute:lhs.1,
             relatedBy:.Equal,
@@ -77,9 +51,21 @@ func !==(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloa
     }
 }
 
-func !>=(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
-    if let superView = rhs.0.superview{
-        superView.addConstraint(NSLayoutConstraint(
+func |>=|(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
+    if applyToSuperView(firstView: lhs.0, rhs.0){
+        if let superView = rhs.0.superview{
+            superView.addConstraint(NSLayoutConstraint(
+                item:lhs.0,
+                attribute:lhs.1,
+                relatedBy:.GreaterThanOrEqual,
+                toItem:rhs.0,
+                attribute:rhs.1,
+                multiplier:1,
+                constant:rhs.2 ))
+        }
+    }
+    else {
+        rhs.0.addConstraint(NSLayoutConstraint(
             item:lhs.0,
             attribute:lhs.1,
             relatedBy:.GreaterThanOrEqual,
@@ -90,9 +76,21 @@ func !>=(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloa
     }
 }
 
-func !<=(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
-    if let superView = rhs.0.superview{
-        superView.addConstraint(NSLayoutConstraint(
+func |<=|(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloat)) {
+    if applyToSuperView(firstView: lhs.0, rhs.0){
+        if let superView = rhs.0.superview{
+            superView.addConstraint(NSLayoutConstraint(
+                item:lhs.0,
+                attribute:lhs.1,
+                relatedBy:.LessThanOrEqual,
+                toItem:rhs.0,
+                attribute:rhs.1,
+                multiplier:1,
+                constant:rhs.2 ))
+        }
+    }
+    else {
+        rhs.0.addConstraint(NSLayoutConstraint(
             item:lhs.0,
             attribute:lhs.1,
             relatedBy:.LessThanOrEqual,
@@ -103,7 +101,8 @@ func !<=(lhs:(UIView, NSLayoutAttribute), rhs:(UIView, NSLayoutAttribute, CGFloa
     }
 }
 
-func ===(lhs:(UIView, NSLayoutAttribute), rhs:(CGFloat)) {
+
+func |=|(lhs:(UIView, NSLayoutAttribute), rhs:(CGFloat)) {
     lhs.0.addConstraint(NSLayoutConstraint(
         item:lhs.0,
         attribute:lhs.1,
@@ -112,6 +111,10 @@ func ===(lhs:(UIView, NSLayoutAttribute), rhs:(CGFloat)) {
         attribute:lhs.1,
         multiplier:1,
         constant:rhs.0 ))
+}
+
+private func applyToSuperView(#firstView: UIView, secondView: UIView) -> Bool{
+    return firstView.superview == secondView.superview
 }
 
 func height (v: UIView) -> (UIView, NSLayoutAttribute) { return (v, .Height) }
