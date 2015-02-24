@@ -10,21 +10,23 @@
 Pod::Spec.new do |s|
   s.name             = "EasyViewLayout"
   s.version          = "0.1.0"
-  s.summary          = "A short description of EasyViewLayout."
+  s.summary          = "EasyViewLayout is an easy to use Auto Layout tool designed to help you setup your constraints with easy."
   s.description      = <<-DESC
-                       An optional longer description of EasyViewLayout
+                       This is a small project I wanted to start with friends. For those who choose not to use IB and would rather
+                        use code to layout view, the idea of this tool is to make constraints less painful and more readable.
+                        Feel free to add/remove as you see fit but use it as your own risk.
 
                        * Markdown format.
                        * Don't worry about the indent, we strip it!
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/EasyViewLayout"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/marcioarantes/EasyViewLayout"
+  # s.screenshots     = "Example", "http://cl.ly/image/1g1n0N3h3s2o"
   s.license          = 'MIT'
   s.author           = { "Marcio Arantes" => "marcioarantes220@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/EasyViewLayout.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/marcioarantes/EasyViewLayout.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '8.1'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'

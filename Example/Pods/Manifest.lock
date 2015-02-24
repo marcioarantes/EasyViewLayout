@@ -1,0 +1,14 @@
+PODS:
+  - EasyViewLayout (0.1.0)
+
+DEPENDENCIES:
+  - EasyViewLayout (from `../`)
+
+EXTERNAL SOURCES:
+  EasyViewLayout:
+    :path: ../
+
+SPEC CHECKSUMS:
+  EasyViewLayout: 95781d33157e26e31e48837232d263b0f86b824b
+
+COCOAPODS: 0.36.0.beta.2
