@@ -11,7 +11,7 @@
 >= GreaterThanOrEqual relation
 <= LessThanOrEqual relation
 == Equal relation
-= Used to assign width or height
+= Used to set width or height
 */
 
 import UIKit
@@ -21,6 +21,15 @@ infix operator |>=| {}
 infix operator |<=| {}
 infix operator |==| {}
 infix operator |=| {}
+
+func height (v: UIView) -> (UIView, NSLayoutAttribute) { return (v, .Height) }
+func width (v: UIView) -> (UIView, NSLayoutAttribute) { return (v, .Width) }
+func left (v: UIView) -> (UIView, NSLayoutAttribute) { return (v, .Left) }
+func right (v: UIView) -> (UIView, NSLayoutAttribute) { return (v, .Right) }
+func centerX (v:UIView) -> (UIView, NSLayoutAttribute) { return (v, .CenterX) }
+func centerY (v:UIView) -> (UIView, NSLayoutAttribute) { return (v, .CenterY) }
+func top (v:UIView) -> (UIView, NSLayoutAttribute) { return (v, .Top) }
+func bottom (v:UIView) -> (UIView, NSLayoutAttribute) { return (v, .Bottom) }
 
 func +(tuple:(UIView, NSLayoutAttribute), c:CGFloat) -> (UIView, NSLayoutAttribute, CGFloat) {
     return (tuple.0, tuple.1, c)
@@ -116,12 +125,3 @@ func |=|(lhs:(UIView, NSLayoutAttribute), rhs:(CGFloat)) {
 private func applyToSuperView(firstView: UIView, secondView: UIView) -> Bool{
     return firstView.superview == secondView.superview
 }
-
-func height (v: UIView) -> (UIView, NSLayoutAttribute) { return (v, .Height) }
-func width (v: UIView) -> (UIView, NSLayoutAttribute) { return (v, .Width) }
-func left (v: UIView) -> (UIView, NSLayoutAttribute) { return (v, .Left) }
-func right (v: UIView) -> (UIView, NSLayoutAttribute) { return (v, .Right) }
-func centerX (v:UIView) -> (UIView, NSLayoutAttribute) { return (v, .CenterX) }
-func centerY (v:UIView) -> (UIView, NSLayoutAttribute) { return (v, .CenterY) }
-func top (v:UIView) -> (UIView, NSLayoutAttribute) { return (v, .Top) }
-func bottom (v:UIView) -> (UIView, NSLayoutAttribute) { return (v, .Bottom) }
